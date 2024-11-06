@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Head from './Head'
 const Admin = () => {
-    const apiUrl = 'https://6729c7f56d5fa4901b6e519b.mockapi.io/emp'
+    const apiUrl = 'https://6729c7f56d5fa4901b6e519b.mockapi.io/emp/'
     const [emp, setEmp] = useState([])
+    const [newEmp, setNewEmp] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const fetchData = async () => {
         try {
@@ -20,7 +21,7 @@ const Admin = () => {
     const deleteEmp = async (id) => {
         try {
             setIsLoading(true)
-            await axios.delete(`https://6729c7f56d5fa4901b6e519b.mockapi.io/emp/${id}`)
+            await axios.delete(`${apiUrl}${id}`)
             fetchData()
             setIsLoading(false)
         } catch (error) {
@@ -31,11 +32,32 @@ const Admin = () => {
     useEffect(() => {
         fetchData();
     }, []);
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const name = e.target[0].value
+        const lastname = e.target[1].value
+        const position = e.target[2].value
+        console.log(name, lastname, position)
+        try {
+            axios.post(`${apiUrl}`, { name,lastname,position })
+        } catch (error) {
+            console.log(error)
+        }
 
+
+    }
     return (
         <>
             <Head sect="admin" />
             <div>{isLoading ? "Loading..." : ""}</div>
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <input type="text" onChange={(e) => setNewEmp(e.target.value)} />
+                    <input type="text" onChange={(e) => setNewEmp(e.target.value)} />
+                    <input type="text" onChange={(e) => setNewEmp(e.target.value)} />
+                    <button type='submit'>Add</button>
+                </form>
+            </div>
             <table>
                 <caption>Table 1</caption>
                 <thead>
