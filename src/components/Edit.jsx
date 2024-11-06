@@ -21,7 +21,7 @@ const Edit = () => {
             const response = await axios.get(`${apiUrl}${id}`);
             setEmp(response.data)
 
-           // console.log(emp);
+            // console.log(emp);
         } catch (error) {
             console.error(error);
         }
@@ -58,7 +58,7 @@ const Edit = () => {
 
     return (
         <>
-
+            <div><a href="../admin"><button>Go Back</button></a></div>
             <div>Edit {id} {emp.name}</div>
             <input type="text" name="name" value={emp.name} onChange={handleNameChange} />
             <input type="text" name="lastname" value={emp.lastname} onChange={handleNameChange} />

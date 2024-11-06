@@ -12,7 +12,7 @@ const Admin = () => {
             const response = await axios.get(apiUrl);
             setEmp(response.data)
             setIsLoading(false)
-            console.log(isLoading);
+            // console.log(isLoading);
         } catch (error) {
             console.error(error);
         }
@@ -24,23 +24,26 @@ const Admin = () => {
             await axios.delete(`${apiUrl}${id}`)
             fetchData()
             setIsLoading(false)
+            
         } catch (error) {
             console.log(error)
         }
+       
     }
 
     useEffect(() => {
         fetchData();
     }, []);
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         // e.preventDefault()
         const name = e.target[0].value
         const lastname = e.target[1].value
         const position = e.target[2].value
-        console.log(name, lastname, position)
+        // console.log(name, lastname, position)
         try {
-            axios.post(`${apiUrl}`, { name, lastname, position })
-            fetchData()
+          const state= await axios.post(`${apiUrl}`, { name, lastname, position })
+        //    fetchData()
+        alert(state)
         } catch (error) {
             console.log(error)
         }
