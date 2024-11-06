@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams,Link } from 'react-router-dom'
 import axios from 'axios'
 import Head from './Head'
 
@@ -90,7 +90,7 @@ const Edit = () => {
 
     return (
         <>
-            <div><a href="../admin"><button>Go Back</button></a></div>
+            <div><Link to={"/admin"}><button>Go Back</button></Link></div>
             <div>Edit {id} {emp.name}</div>
             <input type="text" name="name" required pattern="[A-Za-z]+" title="Only alphabetic characters are allowed" value={emp.name} onChange={handleNameChange} />
             <input type="text" name="lastname" required pattern="[A-Za-z]+" title="Only alphabetic characters are allowed" value={emp.lastname} onChange={handleNameChange} />
