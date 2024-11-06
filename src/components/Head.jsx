@@ -6,7 +6,7 @@ const Head = (sect) => {
         sectName = 'Home - User Section'
     }
     else if (sect.sect === 'admin') {
-        sectName = 'Home - User Section'
+        sectName = 'Home - Admin Section'
     }
     else {
         sectName = "React Assessment"

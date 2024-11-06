@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import Head from './Head'
+
+
+
+
 const apiUrl = 'https://6729c7f56d5fa4901b6e519b.mockapi.io/emp'
 const Edit = () => {
     const id = useParams().id
@@ -32,7 +37,7 @@ const Edit = () => {
 
     const updateEmp = async (id) => {
         try {
-            await axios.put(apiUrl + '/' + id,{
+            await axios.put(apiUrl + '/' + id, {
                 name: emp.name
             })
             fetchData(id)
@@ -53,9 +58,10 @@ const Edit = () => {
 
     return (
         <>
+           
             <div>Edit {id} {emp.name}</div>
             <input type="text" value={emp.name} onChange={handleNameChange} />
-            <button onClick={()=> updateEmp(id)}>Update</button>
+            <button onClick={() => updateEmp(id)}>Update</button>
         </>
 
     )

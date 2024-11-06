@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-
+import Head from './Head'
 const Admin = () => {
     const apiUrl = 'https://6729c7f56d5fa4901b6e519b.mockapi.io/emp'
     const [emp, setEmp] = useState([])
@@ -34,6 +34,7 @@ const Admin = () => {
 
     return (
         <>
+            <Head sect="admin" />
             <div>{isLoading ? "Loading..." : ""}</div>
             <table>
                 <caption>Table 1</caption>
