@@ -79,8 +79,8 @@ const Admin = () => {
                 </form>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '50px' }}>
-                <table>
-                    {/* <caption>Table 1</caption> */}
+                {/* <table>
+                    <caption>Table 1</caption>
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -109,7 +109,7 @@ const Admin = () => {
                         }
 
                     </tbody>
-                </table>
+                </table> */}
 
 
             </div>
