@@ -44,11 +44,18 @@ const Edit = () => {
 
     const updateEmp = async (id) => {
         try {
-            await axios.put(apiUrl + '/' + id, {
+            const response = await axios.put(apiUrl + '/' + id, {
                 name: emp.name,
                 lastname: emp.lastname,
                 position: emp.position
             })
+            
+            if (response.status === 200) { // check for successful response
+                alert("Data submitted successfully!");
+                // fetchData(); // call fetchData function if needed
+            } else {
+                alert("Error submitting data. Please try again.");
+            }
             fetchData(id)
         } catch (error) {
             console.log(error)

@@ -21,33 +21,48 @@ const Admin = () => {
     const deleteEmp = async (id) => {
         try {
             setIsLoading(true)
-            await axios.delete(`${apiUrl}${id}`)
+            const response = await axios.delete(`${apiUrl}${id}`)
             fetchData()
             setIsLoading(false)
-            
+
+            if (response.status === 200) { // check for successful response
+                alert("Data submitted successfully!");
+                // fetchData(); // call fetchData function if needed
+            } else {
+                alert("Error submitting data. Please try again.");
+            }
+
         } catch (error) {
             console.log(error)
         }
-       
+
     }
 
     useEffect(() => {
         fetchData();
     }, []);
-    const handleSubmit = async(e) => {
-        // e.preventDefault()
+    const handleSubmit = async (e) => {
+        e.preventDefault()
         const name = e.target[0].value
         const lastname = e.target[1].value
         const position = e.target[2].value
         // console.log(name, lastname, position)
         try {
-          const state= await axios.post(`${apiUrl}`, { name, lastname, position })
-        //    fetchData()
-        alert(state)
+            const response = await axios.post(`${apiUrl}`, { name, lastname, position })
+            fetchData()
+
+            if (response.status === 201) { // check for successful response
+                alert("Data submitted successfully!");
+                // fetchData(); // call fetchData function if needed
+            } else {
+                alert("Error submitting data. Please try again.");
+            }
+            e.target[0].value = ''
+            e.target[1].value = ''
+            e.target[2].value = ''
         } catch (error) {
             console.log(error)
         }
-
 
     }
     return (
@@ -63,7 +78,7 @@ const Admin = () => {
                     <button type='submit'>Save</button>
                 </form>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-around' ,marginTop:'50px'}}>
+            <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '50px' }}>
                 <table>
                     {/* <caption>Table 1</caption> */}
                     <thead>
