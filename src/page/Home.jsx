@@ -4,7 +4,7 @@ import Head from '../components/Head'
 export const Home = () => {
     return (
         <>
-            <div>Home</div>
+            {/* <div>Home</div> */}
             <Head sect="Home" />
         </>
 

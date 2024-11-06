@@ -33,13 +33,14 @@ const Admin = () => {
         fetchData();
     }, []);
     const handleSubmit = (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         const name = e.target[0].value
         const lastname = e.target[1].value
         const position = e.target[2].value
         console.log(name, lastname, position)
         try {
-            axios.post(`${apiUrl}`, { name,lastname,position })
+            axios.post(`${apiUrl}`, { name, lastname, position })
+            fetchData()
         } catch (error) {
             console.log(error)
         }
@@ -51,44 +52,49 @@ const Admin = () => {
             <Head sect="admin" />
             <div>{isLoading ? "Loading..." : ""}</div>
             <div>
-                <form onSubmit={handleSubmit}>
-                    <input type="text" onChange={(e) => setNewEmp(e.target.value)} />
-                    <input type="text" onChange={(e) => setNewEmp(e.target.value)} />
-                    <input type="text" onChange={(e) => setNewEmp(e.target.value)} />
-                    <button type='submit'>Add</button>
+                <h2>Create User Here</h2>
+                <form onSubmit={handleSubmit} style={{ display: 'flex', justifyContent: 'space-around' }}>
+                    <input type="text" placeholder='Name' onChange={(e) => setNewEmp(e.target.value)} />
+                    <input type="text" placeholder='Last Name' onChange={(e) => setNewEmp(e.target.value)} />
+                    <input type="text" placeholder='Position' onChange={(e) => setNewEmp(e.target.value)} />
+                    <button type='submit'>Save</button>
                 </form>
             </div>
-            <table>
-                <caption>Table 1</caption>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Last Name</th>
-                        <th>Position</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div style={{ display: 'flex', justifyContent: 'space-around' ,marginTop:'50px'}}>
+                <table>
+                    {/* <caption>Table 1</caption> */}
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Last Name</th>
+                            <th>Position</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                    {
-                        emp.map((item) => {
-                            return (
-                                <tr key={item.id}>
-                                    <td>{item.id} {item.name}</td>
-                                    <td>{item.lastname}</td>
-                                    <td>{item.position}</td>
-                                    <td><Link to={`/edit/${item.id}`}><button>EDIT</button></Link>
-                                        <button onClick={() => deleteEmp(item.id)}>DELETE</button>
-                                    </td>
-                                </tr>
+                        {
+                            emp.map((item) => {
+                                return (
+                                    <tr key={item.id}>
+                                        <td>{item.id} {item.name}</td>
+                                        <td>{item.lastname}</td>
+                                        <td>{item.position}</td>
+                                        <td><Link to={`/edit/${item.id}`}><button>EDIT</button></Link>
+                                            <button onClick={() => deleteEmp(item.id)}>DELETE</button>
+                                        </td>
+                                    </tr>
 
-                            )
-                        })
+                                )
+                            })
 
-                    }
+                        }
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+
+
+            </div>
         </>
 
     )

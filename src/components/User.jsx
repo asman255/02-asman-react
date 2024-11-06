@@ -26,35 +26,37 @@ const Admin = () => {
     <>
       <Head sect="user" />
       <div>{isLoading ? "Loading..." : ""}</div>
-      <table>
-        <caption>Table 1</caption>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Last Name</th>
-            <th>Position</th>
+      <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '50px' }}>
+        <table>
+          {/* <caption>Table 1</caption> */}
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Last Name</th>
+              <th>Position</th>
 
-          </tr>
-        </thead>
-        <tbody>
+            </tr>
+          </thead>
+          <tbody>
 
-          {
-            emp.map((item) => {
-              return (
-                <tr key={item.id}>
-                  <td>{item.id} {item.name}</td>
-                  <td>{item.lastname}</td>
-                  <td>{item.position}</td>
+            {
+              emp.map((item) => {
+                return (
+                  <tr key={item.id}>
+                    <td>{item.id} {item.name}</td>
+                    <td>{item.lastname}</td>
+                    <td>{item.position}</td>
 
-                </tr>
+                  </tr>
 
-              )
-            })
+                )
+              })
 
-          }
+            }
 
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </>
 
   )

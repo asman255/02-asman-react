@@ -9,7 +9,7 @@ const Head = (sect) => {
         sectName = 'Home - Admin Section'
     }
     else {
-        sectName = "React Assessment"
+        sectName = "React - Assessment"
     }
 
 
@@ -18,7 +18,7 @@ const Head = (sect) => {
             <h1>Generation Thailand</h1>
             <h1>{sectName}</h1>
             <div>
-                <Link to="/user"> <button>User Home Sector</button> </Link>
+                <Link to="/user"> <button style={{ marginRight: '10rem' }}>User Home Sector</button> </Link>
                 <Link to="/admin"> <button>Admin Home Sector</button> </Link>
             </div>
 
