@@ -72,9 +72,9 @@ const Admin = () => {
             <div>
                 <h2>Create User Here</h2>
                 <form onSubmit={handleSubmit} style={{ display: 'flex', justifyContent: 'space-around' }}>
-                    <input type="text" placeholder='Name' onChange={(e) => setNewEmp(e.target.value)} />
-                    <input type="text" placeholder='Last Name' onChange={(e) => setNewEmp(e.target.value)} />
-                    <input type="text" placeholder='Position' onChange={(e) => setNewEmp(e.target.value)} />
+                    <input type="text" placeholder='Name' required pattern="[A-Za-z]+" title="Only alphabetic characters are allowed" onChange={(e) => setNewEmp(e.target.value)} />
+                    <input type="text" placeholder='Last Name' pattern="[A-Za-z]+" title="Only alphabetic characters are allowed" required onChange={(e) => setNewEmp(e.target.value)} />
+                    <input type="text" placeholder='Position' pattern="[A-Za-z0-9 ]+" title="Only letters, numbers, and spaces are allowed" required onChange={(e) => setNewEmp(e.target.value)} />
                     <button type='submit'>Save</button>
                 </form>
             </div>

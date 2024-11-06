@@ -38,18 +38,43 @@ const Edit = () => {
             ...previousState,
             [name]: value
         }))
-
-        console.log(name, value)
+     
     }
-
+    function validateInputs() {
+        var name = emp.name;
+        var lastname = emp.lastname;
+        var jobPosition = emp.position;
+        var namePattern = /^[A-Za-z]+$/;
+        var lastnamePattern = /^[A-Za-z]+$/;
+        var jobPositionPattern = /^[A-Za-z0-9 ]+$/;
+        if (!namePattern.test(name)) {
+            alert('Invalid First Name! Only alphabetic characters are allowed.');
+            return false;
+        }
+        if (!lastnamePattern.test(lastname)) {
+            alert('Invalid Last Name! Only alphabetic characters are allowed.');
+            return false;
+        }
+        if (!jobPositionPattern.test(jobPosition)) {
+            alert('Invalid Job Position! Only letters, numbers, and spaces are allowed.');
+            return false;
+        }
+        return true
+        // alert('All inputs are valid:\nFirst Name: ' + name + '\nLast Name: ' + lastname + '\nJob Position: ' + jobPosition);
+    }
     const updateEmp = async (id) => {
+        if (!validateInputs()) {
+            return
+        }
+
+
         try {
             const response = await axios.put(apiUrl + '/' + id, {
                 name: emp.name,
                 lastname: emp.lastname,
                 position: emp.position
             })
-            
+
             if (response.status === 200) { // check for successful response
                 alert("Data submitted successfully!");
                 // fetchData(); // call fetchData function if needed
@@ -67,9 +92,9 @@ const Edit = () => {
         <>
             <div><a href="../admin"><button>Go Back</button></a></div>
             <div>Edit {id} {emp.name}</div>
-            <input type="text" name="name" value={emp.name} onChange={handleNameChange} />
-            <input type="text" name="lastname" value={emp.lastname} onChange={handleNameChange} />
-            <input type="text" name="position" value={emp.position} onChange={handleNameChange} />
+            <input type="text" name="name" required pattern="[A-Za-z]+" title="Only alphabetic characters are allowed" value={emp.name} onChange={handleNameChange} />
+            <input type="text" name="lastname" required pattern="[A-Za-z]+" title="Only alphabetic characters are allowed" value={emp.lastname} onChange={handleNameChange} />
+            <input type="text" name="position" pattern="[A-Za-z0-9 ]+" title="Only letters, numbers, and spaces are allowed" value={emp.position} onChange={handleNameChange} />
             <button onClick={() => updateEmp(id)}>Update</button>
         </>
 
